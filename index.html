@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerador de QR Code</title>
+    <style>
+        /* Adicione seu estilo CSS personalizado aqui */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #qrcode {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerador de QR Code</h1>
+    <div id="qrcode"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        // Obtenha o valor do código QR da URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var qrCodeValue = urlParams.get("qr_code");
+
+        // Crie o código QR
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: qrCodeValue,
+            width: 128,
+            height: 128
+        });
+    </script>
+</body>
+</html>
