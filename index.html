@@ -1,25 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gerador de QR Code</title>
+    <title>AppSculpt-Qr code</title>
     <style>
-        /* Adicione seu estilo CSS personalizado aqui */
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
+            background-color: #f0f0f0; /* Cor de fundo */
+            color: #333; /* Cor do texto */
+            margin: 0; /* Remover margens padrão */
+            padding: 20px; /* Espaçamento interno */
         }
+
+        /* Estilo para a logo */
+        img {
+            display: block;
+            margin: 20px auto; /* Centralizar a logo */
+        }
+
+        /* Estilo para o código QR */
         #qrcode {
-            margin: 20px;
+            margin: 20px auto; /* Centralizar o código QR */
+            border: 2px solid #333;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        /* Estilo para o botão de download */
+        #downloadQR {
+            display: block;
+            margin: 20px auto; /* Centralizar o botão de download */
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Gerador de QR Code</h1>
+    <h1>Gerador de Qr Code</h1>
     <div id="qrcode"></div>
+    <a href="#" id="downloadQR">Baixar QR Code</a>
+    <img src="LOGO.PNG.png" alt="Minha Logo" width="200" height="200">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> <!-- Inclusão da biblioteca jsPDF -->
     <script>
         // Obtenha o valor do código QR da URL
         var urlParams = new URLSearchParams(window.location.search);
@@ -28,8 +55,23 @@
         // Crie o código QR
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             text: qrCodeValue,
-            width: 128,
-            height: 128
+            width: 200,
+            height: 200,
+        });
+
+        // Adicione um evento de clique ao botão de download
+        document.getElementById("downloadQR").addEventListener("click", function() {
+            var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
+            var qrImage = qrCanvas.toDataURL("image/png");
+
+            // Crie um objeto jsPDF
+            var pdf = new jsPDF();
+
+            // Adicione a imagem do QR Code ao PDF
+            pdf.addImage(qrImage, 'PNG', 10, 10, 80, 80); // Ajuste as coordenadas e o tamanho conforme necessário
+
+            // Salve o PDF com um nome
+            pdf.save("qrcode.pdf");
         });
     </script>
 </body>
