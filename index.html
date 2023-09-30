@@ -61,16 +61,17 @@
 
         // Adicione um evento de clique ao botão de download
         document.getElementById("downloadQR").addEventListener("click", function() {
+            // Crie uma imagem do código QR
             var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
             var qrImage = qrCanvas.toDataURL("image/png");
 
-            // Crie um objeto jsPDF
+            // Crie um documento PDF
             var pdf = new jsPDF();
 
-            // Adicione a imagem do QR Code ao PDF
+            // Adicione a imagem do código QR ao PDF
             pdf.addImage(qrImage, 'PNG', 10, 10, 80, 80); // Ajuste as coordenadas e o tamanho conforme necessário
 
-            // Salve o PDF com um nome
+            // Salve o PDF como blob
             pdf.save("qrcode.pdf");
         });
     </script>
