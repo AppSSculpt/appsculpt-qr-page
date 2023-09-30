@@ -46,7 +46,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> <!-- Inclusão da biblioteca jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script>
         // Obtenha o valor do código QR da URL
         var urlParams = new URLSearchParams(window.location.search);
@@ -59,21 +59,22 @@
             height: 200,
         });
 
-        // Adicione um evento de clique ao botão de download
-        document.getElementById("downloadQR").addEventListener("click", function() {
-            // Crie uma imagem do código QR
-            var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
-            var qrImage = qrCanvas.toDataURL("image/png");
+       // Adicione um evento de clique ao botão de download
+document.getElementById("downloadQR").addEventListener("click", function() {
+    // Crie uma imagem do código QR
+    var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
+    var qrImage = qrCanvas.toDataURL("image/png");
 
-            // Crie um documento PDF
-            var pdf = new jsPDF();
+    // Crie um novo documento PDF
+    var pdf = new jsPDF();
 
-            // Adicione a imagem do código QR ao PDF
-            pdf.addImage(qrImage, 'PNG', 10, 10, 80, 80); // Ajuste as coordenadas e o tamanho conforme necessário
+    // Adicione a imagem do código QR ao PDF
+    pdf.addImage(qrImage, 'PNG', 10, 10, 80, 80); // Ajuste as coordenadas e o tamanho conforme necessário
 
-            // Salve o PDF como blob
-            pdf.save("qrcode.pdf");
-        });
+    // Salve o PDF como blob
+    pdf.save("qrcode.pdf");
+});
+
     </script>
 </body>
 </html>
