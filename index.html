@@ -11,27 +11,6 @@
             padding: 20px; /* Espaçamento interno */
         }
 
-        /* Estilo para o código QR */
-        #qrcode-container {
-            width: 300px;
-            height: 300px;
-            margin: 20px auto; /* Centralizar o código QR */
-            background-color: #fff;
-        }
-
-        #qrcode {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Estilo para a logo */
-        #logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
         /* Estilo para o botão de download */
         #downloadQR {
             display: block;
@@ -47,31 +26,32 @@
 </head>
 <body>
     <h1>Gerador de Qr Code</h1>
-    <div id="qrcode-container">
-        <div id="qrcode"></div>
-        <img id="logo" src="LOGO.PNG.png" alt="Minha Logo" width="100" height="100">
-    </div>
     <a href="#" id="downloadQR">Baixar QR Code</a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ritz078/qrcode-with-logos/src/qrcode.min.js"></script>
     <script>
         // Obtenha o valor do código QR da URL
         var urlParams = new URLSearchParams(window.location.search);
         var qrCodeValue = urlParams.get("qr_code");
 
-        // Crie o código QR
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: qrCodeValue,
-            width: 270,
-            height: 270,
+        // Crie o código QR com a logo
+        var qrcode = new QRCodeWithLogo({
+            content: qrCodeValue,
+            width: 300,
+            height: 300,
+            logo: {
+                src: 'LOGO.PNG.png', // URL da sua logo
+                width: 80, // Largura da logo
+                height: 80 // Altura da logo
+            }
         });
 
         // Adicione um evento de clique ao botão de download
         document.getElementById("downloadQR").addEventListener("click", function() {
-            // Crie uma imagem do código QR
-            var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
-            var qrImage = qrCanvas.toDataURL("image/png");
+            // Gere o código QR com a logo
+            var qrImage = qrcode.generate();
 
             // Crie um link temporário para download
             var downloadLink = document.createElement("a");
