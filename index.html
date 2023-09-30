@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gerador de QR Code</title>
+    <title>Gerador de QR Code com Logo</title>
     <style>
-        /* Adicione seu estilo CSS personalizado aqui */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
+        /* Estilo para a logo */
+        img {
+            display: block;
+            margin: 20px auto; /* Centralizar a logo */
         }
+
+        /* Estilo para o código QR */
         #qrcode {
-            margin: 20px;
+            margin: 20px auto; /* Centralizar o código QR */
+            border: 2px solid #333;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        /* Estilo para o botão de download */
+        #downloadQR {
+            display: block;
+            margin: 20px auto; /* Centralizar o botão de download */
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Gerador de QR Code</h1>
+    <h1>Gerador de QR Code com Logo</h1>
     <div id="qrcode"></div>
+    <img src="logo.png" alt="Minha Logo" width="100" height="100">
+    <a href="#" id="downloadQR">Baixar QR Code</a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
@@ -30,6 +48,16 @@
             text: qrCodeValue,
             width: 128,
             height: 128
+        });
+
+        // Adicione um evento de clique ao botão de download
+        document.getElementById("downloadQR").addEventListener("click", function() {
+            var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
+            var qrImage = qrCanvas.toDataURL("image/png");
+            
+            var pdf = new jsPDF();
+            pdf.addImage(qrImage, 'PNG', 10, 10, 80, 80); // Ajuste as coordenadas e o tamanho conforme necessário
+            pdf.save("qrcode.pdf");
         });
     </script>
 </body>
