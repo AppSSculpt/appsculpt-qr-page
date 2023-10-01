@@ -183,30 +183,36 @@
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script>
         // Obtenha o valor do código QR da URL
-        var urlParams = new URLSearchParams(window.location.search);
-        var qrCodeValue = urlParams.get("qr_code");
+        // Obtenha o valor do código QR e do nome do material da URL
+var urlParams = new URLSearchParams(window.location.search);
+var qrCodeValue = urlParams.get("qr_code");
+var materialValue = urlParams.get("material");
 
-        // Crie o código QR
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: qrCodeValue,
-            width: 300,
-            height: 300,
-        });
+// Exiba o nome do material
+document.getElementById("material").textContent = "Material: " + materialValue;
 
-        // Adicione um evento de clique ao botão de download
-        document.getElementById("downloadQR").addEventListener("click", function() {
-            // Crie uma imagem do código QR
-            var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
-            var qrImage = qrCanvas.toDataURL("image/png");
+// Crie o código QR
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: qrCodeValue,
+    width: 300,
+    height: 300,
+});
 
-            // Crie um link temporário para download
-            var downloadLink = document.createElement("a");
-            downloadLink.href = qrImage;
-            downloadLink.download = "qrcode.png";
-            
-            // Simule o clique no link para iniciar o download
-            downloadLink.click();
-        });
+// Adicione um evento de clique ao botão de download
+document.getElementById("downloadQR").addEventListener("click", function() {
+    // Crie uma imagem do código QR
+    var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
+    var qrImage = qrCanvas.toDataURL("image/png");
+
+    // Crie um link temporário para download
+    var downloadLink = document.createElement("a");
+    downloadLink.href = qrImage;
+    downloadLink.download = "qrcode.png";
+    
+    // Simule o clique no link para iniciar o download
+    downloadLink.click();
+});
+
     </script>
 </body>
 </html>
