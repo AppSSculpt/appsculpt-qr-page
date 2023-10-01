@@ -23,12 +23,10 @@
             background-size: cover;
             background-repeat: no-repeat;
         }
-        /* Estilo para o código QR e a logo */
-
        /* Estilo para o código QR e a logo */
 #qrcode-container {
-    width: 300px;
-    height: 300px;
+    width: 302px;
+    height: 302px;
     margin: 20px auto; /* Centralizar o código QR */
     background-color: #0300009a;
     position: relative; /* Adicionar uma posição relativa ao contêiner */
@@ -37,6 +35,7 @@
 #qrcode {
     width: 100%;
     height: 100%;
+    border: 2px solid blue;
 }
 
 #logo {
@@ -46,6 +45,7 @@
     transform: translate(-50%, -50%);
     max-width: 100%; /* Evitar que a logo ultrapasse os limites do contêiner */
     max-height: 100%; /* Evitar que a logo ultrapasse os limites do contêiner */
+    border: 2px solid black;
 }
 /* Estilo para o botão de download */
 #downloadQR {
@@ -189,8 +189,8 @@
         // Crie o código QR
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             text: qrCodeValue,
-            width: 270,
-            height: 270,
+            width: 300,
+            height: 300,
         });
 
         // Adicione um evento de clique ao botão de download
