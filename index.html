@@ -2,90 +2,210 @@
 <html>
 <head>
     <title>AppSculpt-Qr code</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* Cor de fundo */
-            color: #333; /* Cor do texto */
-            margin: 0; /* Remover margens padrão */
-            padding: 20px; /* Espaçamento interno */
+    background: linear-gradient(to bottom, #33e0ff, #1e0ead); /* Substitua as cores pelas cores desejadas */
+    font-family: Arial, sans-serif;
+    color: #333; /* Cor do texto */
+    margin: 0; /* Remover margens padrão */
+    padding: 20px; /* Espaçamento interno */
+}
+
+        .conteiner-geral {
+            display: flex;
+            flex-direction: column; /* Altera para uma disposição de coluna em dispositivos móveis */
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh; /* Use min-height para garantir que o conteúdo seja visível em telas menores */
+            background-image: url(D8TFIY.jpg);
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        /* Estilo para o código QR e a logo */
+
+       /* Estilo para o código QR e a logo */
+#qrcode-container {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto; /* Centralizar o código QR */
+    background-color: #0300009a;
+    position: relative; /* Adicionar uma posição relativa ao contêiner */
+}
+
+#qrcode {
+    width: 100%;
+    height: 100%;
+}
+
+#logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%; /* Evitar que a logo ultrapasse os limites do contêiner */
+    max-height: 100%; /* Evitar que a logo ultrapasse os limites do contêiner */
+}
+/* Estilo para o botão de download */
+#downloadQR {
+    display: block;
+    margin: 20px auto; /* Centralizar o botão de download */
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Adicione uma transição de cor de fundo */
+}
+
+/* Adicione um estilo quando o mouse estiver sobre o botão */
+#downloadQR:hover {
+    background-color: #0d3561; /* Por exemplo, torne o botão um pouco mais escuro quando houver hover */
+}
+
+
+/* Estilo para o footer com redes sociais */
+#footer {
+    background-color: #333;
+    color: #12b0e0;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px; /* Adicionar margem superior para separar do conteúdo principal */
+}
+
+/* Estilo para os ícones de redes sociais */
+.social-icon {
+    font-size: 24px;
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
         }
 
-        /* Estilo para o código QR */
-        #qrcode-container {
-            width: 300px;
-            height: 300px;
-            margin: 20px auto; /* Centralizar o código QR */
-            background-color: #fff;
-        }
-
-        #qrcode {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Estilo para o botão de download */
-        #downloadQR {
-            display: block;
-            margin: 20px auto; /* Centralizar o botão de download */
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
+        .navbar a {
+            float: left;
+            font-size: 16px;
+            color: white;
             text-align: center;
+            padding: 14px 16px;
             text-decoration: none;
-            cursor: pointer;
+            transition: background-color 0.3s;
         }
+
+        .navbar a:hover {
+            background-color: #007bff;
+        }
+
+        .navbar .icon {
+            display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar a:not(:first-child) {
+                display: none;
+            }
+            .navbar a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        /* Estilo para o menu responsivo */
+        .navbar.responsive {
+            position: relative;
+        }
+
+        .navbar.responsive .icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .navbar.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+        h1 {
+            padding-left: 40%;
+            max-width: 100%; /* Evitar que a logo ultrapasse os limites do contêiner */
+            max-height: 100%;
+        }
+        a:hover {
+         background-color: #184877;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Gerador de Qr Code</h1>
-    <div id="qrcode-container">
-        <div id="qrcode"></div>
+    <div class="navbar">
+        <a href="#">Página Inicial</a>
+        <a href="#">Sobre</a>
+        <a href="#">Serviços</a>
+        <a href="#">Contato</a>
     </div>
-    <a href="#" id="downloadQR">Baixar QR Code</a>
+    <main>
+        <div><h1>Gerador de Qr Code</h1>
+        </div>
+    </main>
+    <div class="conteiner-geral">
+     <div id="qrcode-container">
+        <div id="qrcode"></div>
+        <img id="logo" src="LOGO.PNG.png" alt="logo AppSculpt" width="200" height="200">
+     </div>
+        
+        <div class="button">
+            <a href="#" id="downloadQR">Baixar QR Code</a>
+        </div>
+    </div>
+<div id="footer">
+
+    <a class="social-icon" href="https://www.facebook.com/seu-facebook" target="_blank">
+        <i class="fab fa-facebook"></i> Facebook
+    </a>
+    <a class="social-icon" href="https://www.twitter.com/seu-twitter" target="_blank">
+        <i class="fab fa-twitter"></i> Twitter
+    </a>
+    <a class="social-icon" href="https://www.instagram.com/seu-instagram" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram
+    </a>
+
+</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode-with-logos"></script>
     <script>
         // Obtenha o valor do código QR da URL
         var urlParams = new URLSearchParams(window.location.search);
         var qrCodeValue = urlParams.get("qr_code");
 
-        // Opções para o código QR com logotipo
-        var qrcodeOptions = {
-            content: qrCodeValue,
+        // Crie o código QR
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: qrCodeValue,
             width: 270,
             height: 270,
-            logo: {
-                src: "LOGO.PNG.png", // Caminho para a imagem da logo
-                width: 60, // Largura da logo
-                height: 60 // Altura da logo
-            }
-        };
+        });
 
-        // Crie o código QR com logotipo
-        QRCodeWithLogos.toCanvas(qrcodeOptions, function (err, canvas) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            document.getElementById("qrcode").appendChild(canvas);
+        // Adicione um evento de clique ao botão de download
+        document.getElementById("downloadQR").addEventListener("click", function() {
+            // Crie uma imagem do código QR
+            var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
+            var qrImage = qrCanvas.toDataURL("image/png");
 
-            // Adicione um evento de clique ao botão de download
-            document.getElementById("downloadQR").addEventListener("click", function() {
-                // Crie uma imagem do código QR
-                var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
-                var qrImage = qrCanvas.toDataURL("image/png");
-
-                // Crie um link temporário para download
-                var downloadLink = document.createElement("a");
-                downloadLink.href = qrImage;
-                downloadLink.download = "qrcode.png";
-
-                // Simule o clique no link para iniciar o download
-                downloadLink.click();
-            });
+            // Crie um link temporário para download
+            var downloadLink = document.createElement("a");
+            downloadLink.href = qrImage;
+            downloadLink.download = "qrcode.png";
+            
+            // Simule o clique no link para iniciar o download
+            downloadLink.click();
         });
     </script>
 </body>
