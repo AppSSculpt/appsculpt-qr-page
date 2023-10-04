@@ -207,15 +207,15 @@ justify-content: center;
     </div>
 
     <script>
-        
+
         // Função para criar o código QR
-        function createQRCode(qrCodeValue) {
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: qrCodeValue,
-                width: 200,
-                heigth: 200,
-            });
-        }
+function createQRCode(qrCodeValue) {
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: qrCodeValue,
+        width: 200,
+        height: 200,
+    });
+}
 
         // Função para exibir o nome do material
         function displayMaterial(materialValue) {
