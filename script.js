@@ -1,4 +1,4 @@
-// Function to create the QR code
+// Função para criar o código QR
 function createQRCode(qrCodeValue) {
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: qrCodeValue,
@@ -7,59 +7,90 @@ function createQRCode(qrCodeValue) {
     });
 }
 
-// Function to display the material name
+// Função para exibir o nome do material
 function displayMaterial(materialValue) {
     document.getElementById("material").textContent = "Material: " + materialValue;
 }
 
-// Function to display the code name
+// Função para exibir o nome do código
 function displayCodigo(codigoValue) {
-    document.getElementById("codigo").textContent = "Code: " + codigoValue;
+    document.getElementById("codigo").textContent = "Código: " + codigoValue;
 }
 
-// Function to create the custom image and set up the download link
+// Função para criar a imagem personalizada e configurar o link de download
+// Função para criar a imagem personalizada e configurar o link de download
 function createCustomImageAndDownload() {
-    // Select the container you want to capture
+    // Selecione o contêiner que você deseja capturar
     var container = document.getElementById("qrcode-container");
 
-    // Get the zoom factor of the page
+    // Obtenha o fator de zoom da página
     var zoomFactor = window.innerWidth / window.outerWidth;
 
-    // Apply the zoom factor to the container size
+    // Aplique o fator de zoom ao tamanho do contêiner
     container.style.transform = "scale(" + 1 / zoomFactor + ")";
 
-    // Create a new image element
+    // Crie um novo elemento de imagem
     var customImage = new Image();
     customImage.src = "data:image/svg+xml," + encodeURIComponent(container.innerHTML);
 
-    // Restore the original size of the container
+    // Restaure o tamanho original do contêiner
     container.style.transform = "scale(1)";
 
-    // Create a temporary link for downloading
+    // Crie um link temporário para fazer o download
     var downloadLink = document.createElement("a");
     downloadLink.href = customImage.src;
     downloadLink.download = "custom_image.png";
 
-    // Simulate a click on the link to initiate the download
+    // Simule o clique no link para iniciar o download
     downloadLink.click();
 }
 
-// Check if the download button with the ID "downloadCustomImage" exists in your HTML before adding the click event
+// Verifique se o botão de download com o ID "downloadCustomImage" existe no seu HTML antes de adicionar o evento de clique
 var downloadButton = document.getElementById("downloadCustomImage");
 if (downloadButton) {
     downloadButton.addEventListener("click", createCustomImageAndDownload);
 }
 
-// Get the values from the URL for QR code, material, and code
+// Obtenha os valores da URL para código QR, material e código
 var urlParams = new URLSearchParams(window.location.search);
 var qrCodeValue = urlParams.get("qr_code");
 var materialValue = urlParams.get("material");
 var codigoValue = urlParams.get("codigo");
 
-// Call the functions to set up the QR code, material name, and code name
+// Chame as funções para configurar o código QR, o nome do material e o nome do código
 createQRCode(qrCodeValue);
 displayMaterial(materialValue);
 displayCodigo(codigoValue);
+
+        
+        
+                // Adicione um evento de clique ao botão de download
+                // Função para criar a imagem personalizada
+        
+             // Função para criar a imagem personalizada e configurar o link de download
+        function createCustomImageAndDownload() {
+            // Selecione o contêiner que você deseja capturar
+            var container = document.getElementById("qrcode-container");
+        
+            // Use a biblioteca html2canvas para capturar o conteúdo do contêiner
+            html2canvas(container).then(function(canvas) {
+                // Crie uma nova imagem a partir do canvas capturado
+                var customImage = new Image();
+                customImage.src = canvas.toDataURL("image/png");
+        
+                // Crie um link temporário para fazer o download
+                var downloadLink = document.createElement("a");
+                downloadLink.href = customImage.src;
+                downloadLink.download = "custom_image.png";
+        
+                // Simule o clique no link para iniciar o download
+                downloadLink.click();
+            });
+        }
+        
+        // Adicione um evento de clique ao botão de download
+        document.getElementById("downloadCustomImage").addEventListener("click", createCustomImageAndDownload);
+        
 
 // Detecta quando o usuário rola a página
 $(window).scroll(function() {
