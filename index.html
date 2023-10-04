@@ -44,10 +44,6 @@ justify-content: center;
     position: relative;
     text-align: center; 
 }
-    img {
-    width: 200px;
-    height: 200px;
-}
 
 #qrcode {
     width: 200px;
@@ -155,6 +151,7 @@ justify-content: center;
          background-color: #184877;
         }
         /* Estilo parágrafos */
+        
         #material {
             padding: 5px;
             color: white;
@@ -218,8 +215,8 @@ justify-content: center;
         function createQRCode(qrCodeValue) {
             var qrcode = new QRCode(document.getElementById("qrcode"), {
                 text: qrCodeValue,
-                width:200px
-                heigth:200px
+                width: 200px,
+                heigth: 200px,
             });
         }
 
