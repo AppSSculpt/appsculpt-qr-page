@@ -2,7 +2,7 @@ body {
     background: linear-gradient(to bottom, #0e9b50, #1e0ead); /* Substitua as cores pelas cores desejadas */
     font-family: Arial, sans-serif;
     color: #333; /* Cor do texto */
-    margin: 0 0; /* Remover margens padrão */
+    margin: 0; /* Remover margens padrão */
     
 }
 .conteiner-geral {
@@ -108,6 +108,7 @@ justify-content: center;
     text-decoration: none;
 }
 
+
         .navbar {
             overflow: hidden;
             background-color: #333;
@@ -168,15 +169,25 @@ justify-content: center;
             text-align: left;
         }
         h1 {
-            position: fixed; /* Fix the header position */
-            top: 0; /* Align it to the top of the viewport */
-            left: 50%; /* Align it horizontally to the center */
-            transform: translateX(-50%); /* Adjust for center alignment */
-            background-color: #33333305; /* Set your desired background color */
-            color: white; /* Set text color */
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #33333305;
+            
+           
+        color: white;
             padding: 50px;
-            z-index: 1000; /* Ensure it's above other elements */
+            z-index: 1000;
         }
+        /* Media query for screens smaller than 768px (adjust the breakpoint as needed) */
+@media screen and (max-width: 768px) {
+    h1 {
+        position: relative; /* Change to relative positioning on smaller screens */
+        padding: 10px; /* Adjust padding for smaller screens */
+        text-align: center; /* Center-align text on smaller screens */
+    }
+}
         a:hover {
          background-color: #184877;
         }
