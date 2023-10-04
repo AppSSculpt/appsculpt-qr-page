@@ -5,52 +5,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
     <style>
         body {
     background: linear-gradient(to bottom, #33e0ff, #1e0ead); /* Substitua as cores pelas cores desejadas */
     font-family: Arial, sans-serif;
     color: #333; /* Cor do texto */
     margin: 0; /* Remover margens padrão */
-    padding: 20px; /* Espaçamento interno */
+    
 }
-
-        .conteiner-geral {
+.conteiner-geral {
             display: flex;
             flex-direction: column; /* Altera para uma disposição de coluna em dispositivos móveis */
             justify-content: center;
             align-items: center;
             min-height: 80vh; /* Use min-height para garantir que o conteúdo seja visível em telas menores */
-            background-image: url(D8TFIY.jpg);
-            background-position: center center;
+            background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
         }
+
        /* Estilo para o código QR e a logo */
 #qrcode-container {
-    width: 302px;
-    height: 302px;
-    margin: 20px auto; /* Centralizar o código QR */
+    max-width: 300px;
+    max-height: 570px;
+    width: 100%; /* O contêiner ocupa 100% da largura disponível */
+    height: auto; /* A altura se ajusta automaticamente ao conteúdo */
+    display: flex;
+    flex-direction: column;
+    
+   
+justify-content: center;
+    align-items: center;
     background-color: #0300009a;
-    position: relative; /* Adicionar uma posição relativa ao contêiner */
+    position: relative;
+    text-align: center; 
 }
 
 #qrcode {
-    width: 100%;
-    height: 100%;
-    border: 2px solid blue;
+    width: 200px;
+    height: 200px;
 }
 
 #logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%; /* Evitar que a logo ultrapasse os limites do contêiner */
-    max-height: 100%; /* Evitar que a logo ultrapasse os limites do contêiner */
-    border: 2px solid black;
+   width: 50%;
+   height: auto;
+   max-width: 100%;
 }
 /* Estilo para o botão de download */
-#downloadQR {
+#downloadCustomImage {
     display: block;
     margin: 20px auto; /* Centralizar o botão de download */
     background-color: #007bff;
@@ -64,7 +68,7 @@
 }
 
 /* Adicione um estilo quando o mouse estiver sobre o botão */
-#downloadQR:hover {
+#downloadCustomImage:hover {
     background-color: #0d3561; /* Por exemplo, torne o botão um pouco mais escuro quando houver hover */
 }
 
@@ -145,18 +149,21 @@
          background-color: #184877;
         }
         /* Estilo parágrafos */
-
-        p {
-            color: #fff;
-            font-size: 16px; /* Tamanho da fonte padrão */
-            line-height: 1.5; /* Espaçamento entre linhas padrão */
-            margin-bottom: 20px; /* Espaçamento inferior padrão entre parágrafos */
+        #material {
+            padding: 5px;
+            color: white;
         }
+
+    
         /* Estilo para tornar o texto responsivo em telas menores */
         @media screen and (max-width: 768px) {
             p {
                 font-size: 14px; /* Tamanho da fonte reduzido para telas menores */
             }
+        }
+        #codigo {
+            color: blue;
+            padding: 3px;
         }
     </style>
 </head>
@@ -168,66 +175,105 @@
         <a href="#">Contato</a>
     </div>
     <header>
-        <div><h1>AppSculpt Creations</h1>
+        <div>
+            <h1>AppSculpt Creations</h1>
         </div>
     </header>
-    
+
     <div class="conteiner-geral">
-     <div id="qrcode-container">
-        <div id="qrcode"></div>
-        <img id="logo" src="LOGO.PNG.png" alt="logo AppSculpt" width="200" height="200">
-         <p id="material"></p>
-         <br>
-     </div>
-        
+        <div id="qrcode-container">
+            <img id="logo" src="LOGO.PNG.png" alt="logo AppSculpt" width="100" height="100">
+            <div id="qrcode"></div>
+            <br>
+            <p id="material"></p>
+            <p id="codigo"></p>
+        </div>
+
         <div class="button">
-            <a href="#" id="downloadQR">Download</a>
+            <a href="#" id="downloadCustomImage">Download</a>
         </div>
     </div>
-<div id="footer">
 
-    <a class="social-icon" href="https://www.facebook.com/seu-facebook" target="_blank">
-        <i class="fab fa-facebook"></i> Facebook
-    </a>
-    <a class="social-icon" href="https://www.twitter.com/seu-twitter" target="_blank">
-        <i class="fab fa-twitter"></i> Twitter
-    </a>
-    <a class="social-icon" href="https://www.instagram.com/seu-instagram" target="_blank">
-        <i class="fab fa-instagram"></i> Instagram
-    </a>
-
-</div>
+    <div id="footer">
+        <a class="social-icon" href="https://www.facebook.com/seu-facebook" target="_blank">
+            <i class="fab fa-facebook"></i> Facebook
+        </a>
+        <a class="social-icon" href="https://www.twitter.com/seu-twitter" target="_blank">
+            <i class="fab fa-twitter"></i> Twitter
+        </a>
+        <a class="social-icon" href="https://www.instagram.com/seu-instagram" target="_blank">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+    </div>
 
     <script>
-        // Obtenha o valor do código QR e do nome do material da URL
+        
+        // Função para criar o código QR
+        function createQRCode(qrCodeValue) {
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: qrCodeValue,
+                width: 300,
+                height: 300,
+            });
+        }
+
+        // Função para exibir o nome do material
+        function displayMaterial(materialValue) {
+            document.getElementById("material").textContent = "Material: " + materialValue;
+        }
+
+        // Função para exibir o nome do código
+        function displayCodigo(codigoValue) {
+            document.getElementById("codigo").textContent = "Código: " + codigoValue;
+        }
+
+        // Função para realizar o download do código QR
+         //function downloadQRCode() {
+            //var qrCanvas = document.getElementById("qrcode-container").getElementsByTagName("canvas")[0];
+            //var qrImage = qrCanvas.toDataURL("image/png");
+            //var downloadLink = document.createElement("a");
+            //downloadLink.href = qrImage;
+            //downloadLink.download = "qrcode.png";
+            //downloadLink.click();
+        //}
+
+        // Obtenha os valores da URL para código QR, material e código
         var urlParams = new URLSearchParams(window.location.search);
         var qrCodeValue = urlParams.get("qr_code");
         var materialValue = urlParams.get("material");
+        var codigoValue = urlParams.get("codigo");
 
-        // Exiba o nome do material
-        document.getElementById("material").textContent = "Material: " + materialValue;
-
-        // Crie o código QR
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: qrCodeValue,
-            width: 300,
-            height: 300,
-        });
+        // Chame as funções para configurar o código QR, o nome do material e o nome do código
+        createQRCode(qrCodeValue);
+        displayMaterial(materialValue);
+        displayCodigo(codigoValue);
 
         // Adicione um evento de clique ao botão de download
-        document.getElementById("downloadQR").addEventListener("click", function() {
-            // Crie uma imagem do código QR
-            var qrCanvas = document.getElementById("qrcode").getElementsByTagName("canvas")[0];
-            var qrImage = qrCanvas.toDataURL("image/png");
+        // Função para criar a imagem personalizada
 
-            // Crie um link temporário para download
-            var downloadLink = document.createElement("a");
-            downloadLink.href = qrImage;
-            downloadLink.download = "qrcode.png";
+     // Função para criar a imagem personalizada e configurar o link de download
+function createCustomImageAndDownload() {
+    // Selecione o contêiner que você deseja capturar
+    var container = document.getElementById("qrcode-container");
 
-            // Simule o clique no link para iniciar o download
-            downloadLink.click();
-        });
+    // Use a biblioteca html2canvas para capturar o conteúdo do contêiner
+    html2canvas(container).then(function(canvas) {
+        // Crie uma nova imagem a partir do canvas capturado
+        var customImage = new Image();
+        customImage.src = canvas.toDataURL("image/png");
+
+        // Crie um link temporário para fazer o download
+        var downloadLink = document.createElement("a");
+        downloadLink.href = customImage.src;
+        downloadLink.download = "custom_image.png";
+
+        // Simule o clique no link para iniciar o download
+        downloadLink.click();
+    });
+}
+
+// Adicione um evento de clique ao botão de download
+document.getElementById("downloadCustomImage").addEventListener("click", createCustomImageAndDownload);
 
     </script>
 </body>
