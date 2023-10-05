@@ -3,9 +3,8 @@ var urlParams = new URLSearchParams(window.location.search);
 var qrCodeValue = urlParams.get("qr_code");
 var materialValue = urlParams.get("material");
 
-// Chame as funções para configurar o código QR e o nome do material
+// Chame a função para configurar o código QR primeiro
 createQRCode(qrCodeValue);
-displayMaterial(materialValue);
 
 // Função para criar o código QR e exibir o valor
 function createQRCode(qrCodeValue) {
@@ -18,6 +17,9 @@ function createQRCode(qrCodeValue) {
     // Exiba o valor do código QR em um elemento HTML com o ID "codigo"
     var qrCodeValueDisplay = document.getElementById("codigo");
     qrCodeValueDisplay.textContent = "Código QR: " + qrCodeValue;
+
+    // Após configurar o código QR, chame a função para exibir o nome do material
+    displayMaterial(materialValue);
 }
 
 // Função para exibir o nome do material
