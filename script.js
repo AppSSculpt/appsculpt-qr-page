@@ -1,3 +1,12 @@
+// Obtenha os valores da URL para código QR e material
+var urlParams = new URLSearchParams(window.location.search);
+var qrCodeValue = urlParams.get("qr_code");
+var materialValue = urlParams.get("material");
+
+// Chame as funções para configurar o código QR e o nome do material
+createQRCode(qrCodeValue);
+displayMaterial(materialValue);
+
 // Função para criar o código QR e exibir o valor
 function createQRCode(qrCodeValue) {
     var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -16,10 +25,7 @@ function displayMaterial(materialValue) {
     document.getElementById("material").textContent = "Material: " + materialValue;
 }
 
-// Função para exibir o nome do código
-function displayCodigo(codigoValue) {
-    document.getElementById("codigo").textContent = "Código: " + codigoValue;
-}
+// Função para criar a imagem personalizada e configurar o link de download
 function createCustomImageAndDownload() {
     // Selecione o contêiner que você deseja capturar
     var container = document.getElementById("qrcode-container");
@@ -51,39 +57,3 @@ var downloadButton = document.getElementById("downloadCustomImage");
 if (downloadButton) {
     downloadButton.addEventListener("click", createCustomImageAndDownload);
 }
-
-// Obtenha os valores da URL para código QR, material e código
-var urlParams = new URLSearchParams(window.location.search);
-var qrCodeValue = urlParams.get("qr_code");
-var materialValue = urlParams.get("material");
-var codigoValue = urlParams.get("codigo");
-
-// Chame as funções para configurar o código QR, o nome do material e o nome do código
-createQRCode(qrCodeValue);
-displayMaterial(materialValue);
-displayCodigo(codigoValue);
-             // Função para criar a imagem personalizada e configurar o link de download
-        function createCustomImageAndDownload() {
-            // Selecione o contêiner que você deseja capturar
-            var container = document.getElementById("qrcode-container");
-        
-            // Use a biblioteca html2canvas para capturar o conteúdo do contêiner
-            html2canvas(container).then(function(canvas) {
-                // Crie uma nova imagem a partir do canvas capturado
-                var customImage = new Image();
-                customImage.src = canvas.toDataURL("image/png");
-        
-                // Crie um link temporário para fazer o download
-                var downloadLink = document.createElement("a");
-                downloadLink.href = customImage.src;
-                downloadLink.download = "custom_image.png";
-        
-                // Simule o clique no link para iniciar o download
-                downloadLink.click();
-            });
-        }
-        
-        // Adicione um evento de clique ao botão de download
-        document.getElementById("downloadCustomImage").addEventListener("click", createCustomImageAndDownload);
-
-        
