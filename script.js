@@ -60,7 +60,7 @@ var codigoValue = urlParams.get("codigo");
 // Chame as funções para configurar o código QR, o nome do material e o nome do código
 createQRCode(qrCodeValue);
 displayMaterial(materialValue);
-displayCodigo(codigoValue);
+displayCodigo(qrCodeValue);
 
         
         
@@ -90,15 +90,5 @@ displayCodigo(codigoValue);
         
         // Adicione um evento de clique ao botão de download
         document.getElementById("downloadCustomImage").addEventListener("click", createCustomImageAndDownload);
+
         
-
-// Detecta quando o usuário rola a página
-$(window).scroll(function() {
-    // Verifique a posição de rolagem
-    if ($(this).scrollTop() > 100) { // Altere o valor 100 para a quantidade desejada de rolagem antes de fixar a barra de navegação
-        $('.navbar').addClass('fixed');
-    } else {
-        $('.navbar').removeClass('fixed');
-    }
-});
-
