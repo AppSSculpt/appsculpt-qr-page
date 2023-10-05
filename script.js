@@ -16,7 +16,7 @@ function createQRCode(qrCodeValue) {
 
     // Exiba o valor do código QR em um elemento HTML com o ID "codigo"
     var qrCodeValueDisplay = document.getElementById("codigo");
-    qrCodeValueDisplay.textContent = "Código QR: " + qrCodeValue;
+    qrCodeValueDisplay.textContent = "Código: " + qrCodeValue;
 
     // Após configurar o código QR, chame a função para exibir o nome do material
     displayMaterial(materialValue);
