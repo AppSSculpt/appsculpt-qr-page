@@ -61,7 +61,7 @@ var codigoValue = urlParams.get("codigo");
 // Chame as funções para configurar o código QR, o nome do material e o nome do código
 createQRCode(qrCodeValue);
 displayMaterial(materialValue);
-displayCodigo(qrCodeValue);
+displayCodigo(codigoValue);
              // Função para criar a imagem personalizada e configurar o link de download
         function createCustomImageAndDownload() {
             // Selecione o contêiner que você deseja capturar
