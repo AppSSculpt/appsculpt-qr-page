@@ -14,10 +14,9 @@ function displayMaterial(materialValue) {
 
 // Função para exibir o nome do código
 function displayCodigo(codigoValue) {
-    document.getElementById("codigo").textContent = "Código: " + codigoValue;
+    document.getElementById("qrcode").textContent = "Código: " + codigoValue;
 }
 
-// Função para criar a imagem personalizada e configurar o link de download
 // Função para criar a imagem personalizada e configurar o link de download
 function createCustomImageAndDownload() {
     // Selecione o contêiner que você deseja capturar
