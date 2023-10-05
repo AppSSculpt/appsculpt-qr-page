@@ -1,10 +1,14 @@
-// Função para criar o código QR
+// Função para criar o código QR e exibir o valor
 function createQRCode(qrCodeValue) {
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: qrCodeValue,
         width: 200,
         height: 200,
     });
+
+    // Exiba o valor do código QR em um elemento HTML com o ID "codigo"
+    var qrCodeValueDisplay = document.getElementById("codigo");
+    qrCodeValueDisplay.textContent = "Código QR: " + qrCodeValue;
 }
 
 // Função para exibir o nome do material
@@ -14,10 +18,8 @@ function displayMaterial(materialValue) {
 
 // Função para exibir o nome do código
 function displayCodigo(codigoValue) {
-    document.getElementById("qrcode").textContent = "Código: " + codigoValue;
+    document.getElementById("codigo").textContent = "Código: " + codigoValue;
 }
-
-// Função para criar a imagem personalizada e configurar o link de download
 function createCustomImageAndDownload() {
     // Selecione o contêiner que você deseja capturar
     var container = document.getElementById("qrcode-container");
@@ -60,12 +62,6 @@ var codigoValue = urlParams.get("codigo");
 createQRCode(qrCodeValue);
 displayMaterial(materialValue);
 displayCodigo(qrCodeValue);
-
-        
-        
-                // Adicione um evento de clique ao botão de download
-                // Função para criar a imagem personalizada
-        
              // Função para criar a imagem personalizada e configurar o link de download
         function createCustomImageAndDownload() {
             // Selecione o contêiner que você deseja capturar
