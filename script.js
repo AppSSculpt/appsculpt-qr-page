@@ -48,7 +48,7 @@ if (downloadButton) {
 var urlParams = new URLSearchParams(window.location.search);
 var qrCodeValue = urlParams.get("qr_code");
 var materialValue = urlParams.get("material");
-var codigoValue = urlParams.get("codigo");
+var codigoValue = urlParams.get("qr_code");
 
 // Chame as funções para configurar o código QR, o nome do material e o nome do código
 createQRCode(qrCodeValue);
