@@ -2,8 +2,8 @@
 function createQRCode(qrCodeValue) {
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: qrCodeValue,
-        width: 200,
-        height: 200,
+        width: 178,
+        height: 178,
     });
 }
 
@@ -38,7 +38,6 @@ function createCustomImageAndDownload() {
     });
 }
 
-// Verifique se o botão de download com o ID "downloadCustomImage" existe no seu HTML antes de adicionar o evento de clique
 var downloadButton = document.getElementById("downloadCustomImage");
 if (downloadButton) {
     downloadButton.addEventListener("click", createCustomImageAndDownload);
@@ -50,7 +49,6 @@ var qrCodeValue = urlParams.get("qr_code");
 var materialValue = urlParams.get("material");
 var codigoValue = urlParams.get("qr_code");
 
-// Chame as funções para configurar o código QR, o nome do material e o nome do código
 createQRCode(qrCodeValue);
 displayMaterial(materialValue);
 displayCodigo(codigoValue);
