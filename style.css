@@ -1,3 +1,4 @@
+/* Estilos gerais */
 body {
     background: linear-gradient(to bottom, #0e9b50, #1e0ead);
     font-family: Arial, sans-serif;
@@ -5,76 +6,18 @@ body {
     margin: 0;
 }
 
-.conteiner-geral {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 20px; /* Adicione um preenchimento para o conteúdo dentro do contêiner */
-}
-
-#qrcode-container {
-    display: flex;
-    max-width: 225px;
-    width: 100%;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(249, 249, 249, 0.6); /* Use rgba para transparência no fundo */
-    position: relative;
-    text-align: center;
-    margin: 0 auto;
-    padding: 20px; /* Adicione um preenchimento interno ao contêiner */
-    border-radius: 10px; /* Adicione borda arredondada ao contêiner */
-}
-
-#qrcode {
-    padding: 5px;
-    width: 200px;
-    height: 200px;
-}
-
-#qrcode-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.723);
-    background-color: rgba(165, 160, 160, 0.8); /* Escureça o fundo ao passar o mouse */
-}
-#logo {
-    max-width: 100%; /* Defina a largura máxima como 100% para evitar que a logo fique maior do que o seu contêiner */
-    height: auto; /* Mantenha a altura automática para preservar a proporção */
-}
-
-/* Ajuste o tamanho da logo em telas menores, se necessário */
-@media screen and (max-width: 768px) {
-    #logo {
-        max-width: 80%; /* Reduza a largura da logo em telas menores */
-    }
-}
-
-    .navbar {
-        overflow: hidden;
-        background-color: #333;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000; /* Aumente o z-index para que a navbar esteja sempre sobreposta ao h1 */
-        transition: top 0.3s;
-    }
-
-.content {
-    margin-top: 100px;
-}
-
-.navbar.fixed {
+/* Barra de navegação */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
     position: fixed;
     top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: top 0.3s;
 }
 
+/* Links da barra de navegação */
 .navbar a {
     float: left;
     font-size: 16px;
@@ -86,78 +29,106 @@ body {
     border-radius: 3px;
 }
 
-.navbar a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(49, 46, 46, 0.409);
-    background-color: hsla(119, 89%, 36%, 0.527);
-}
-
-/* Adicione uma classe para esconder os links da navbar */
-.navbar a.hidden {
+/* Links da barra de navegação no modo mobile */
+.navbar a.hidden.mobile {
     display: none;
 }
 
-/* Estilize o ícone de menu */
-.navbar .icon {
-    display: none;
+/* Ícone de menu no modo mobile */
+.navbar .icon.mobile {
+    display: block;
     float: right;
     cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
-    .navbar a:not(.icon) {
-        display: none;
-    }
-    .navbar .icon {
-        display: block;
-    }
-}
-
+/* Título da página */
 h1 {
     position: relative;
     text-align: center;
     background-color: #33333305;
     color: white;
-    padding: 20px; /* Aumente o preenchimento para telas menores */
-    
-   
-z-index: 1000;
-    margin: 60px 20px 20px; /* Adicione uma margem superior para empurrar o h1 abaixo da navbar */
-    transition: top 0.3s; /* Adicione uma transição para suavizar o movimento */
+    padding: 20px;
+    z-index: 1000;
+    margin: 60px 20px 20px;
+    transition: top 0.3s;
 }
 
-@media screen and (max-width: 768px) {
-    h1 {
-        padding: 10px;
-        margin: 60px 10px 10px; /* Ajuste a margem para telas menores */
-    }
+/* Título da página no modo mobile */
+h1.mobile {
+    padding: 10px;
+    margin: 0;
+    position: relative;
+    background-color: transparent;
 }
 
-a:hover {
-    background-color: #184877;
+/* Container geral */
+.conteiner-geral {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
 }
 
-#material {
+/* Container do QR code */
+#qrcode-container {
+    display: flex;
+    max-width: 225px;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(249, 249, 249, 0.6);
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Container do QR code no modo mobile */
+#qrcode-container.mobile {
+    max-width: 100%;
+    width: auto;
+    padding: 20px;
+}
+
+/* QR code */
+#qrcode {
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+/* QR code no modo mobile */
+#qrcode.mobile {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+/* Conteúdo visível apenas quando a página é rolada para baixo */
+.content {
+    margin-top: 0;
+    transition: margin-top 0.3s;
+}
+
+/* Material e código */
+#material, #codigo {
     padding: 5px;
     color: rgb(3, 3, 3);
     margin: 0;
 }
 
-@media screen and (max-width: 768px) {
-    p {
-        font-size: 14px;
-    }
-}
-
-#codigo {
-    color: rgb(0, 0, 0);
-    padding: 3px;
-    margin: 0;
-}
-
+/* Botão de download */
 #downloadCustomImage {
     display: block;
-    margin: 20px auto; /* Centralize o botão de download */
+    margin: 20px auto;
     background-color: #007bff;
     color: #fff;
     border-radius: 7px;
@@ -165,13 +136,14 @@ a:hover {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s; /* Adicione uma transição de cor de fundo */
+    transition: background-color 0.3s;
 }
 
 #downloadCustomImage:hover {
     background-color: #0d3561;
 }
 
+/* Rodapé */
 #footer {
     background-color: #333;
     padding: 20px;
@@ -179,6 +151,7 @@ a:hover {
     text-align: center;
 }
 
+/* Ícones de redes sociais */
 .social-icon {
     margin: 10px;
     color: #fff;
@@ -190,6 +163,14 @@ a:hover {
     transform: scale(1.1);
 }
 
+/* Informações de contato */
 .contact-info {
     margin-top: 20px;
+}
+
+/* Ajuste do tamanho da logo em telas menores, se necessário */
+@media screen and (max-width: 768px) {
+    #logo {
+        max-width: 80%;
+    }
 }
