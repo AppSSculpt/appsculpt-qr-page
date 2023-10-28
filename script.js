@@ -20,7 +20,7 @@ function displayCodigo(codigoValue) {
 // Função para criar a imagem personalizada e configurar o link de download
 function createCustomImageAndDownload() {
     // Selecione o contêiner que você deseja capturar
-    var container = document.getElementById("qrcode-container");
+    var container = document.querySelector(".custom-qrcode-container");
 
     // Use a biblioteca html2canvas para capturar o conteúdo do contêiner
     html2canvas(container).then(function(canvas) {
