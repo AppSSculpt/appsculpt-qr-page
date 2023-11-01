@@ -136,10 +136,13 @@ a:hover {
     color: rgb(3, 3, 3);
     margin: 0;
 }
-
 @media screen and (max-width: 768px) {
-    p {
-        font-size: 14px;
+    #qrcode-container {
+        flex-direction: row; /* Alinhar os itens horizontalmente em linha */
+    }
+
+    #codigo, #material {
+        font-size: 14px; /* Reduzir o tamanho da fonte para ambos */
     }
 }
 
