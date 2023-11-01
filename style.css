@@ -176,25 +176,63 @@ a:hover {
     background-color: #0d3561;
 }
 
-
 #footer {
-  background-color: #333;
-  padding: 20px;
-  color: #fff;
-  text-align: center;
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+#footer p {
+    font-size: 16px;
+    margin: 10px 0;
+    opacity: 0; /* Comece com opacidade zero para a animação */
+    transform: translateY(20px); /* Deslocamento inicial para cima */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#footer p:nth-child(odd) {
+    animation: fadeInRight 1s both;
+}
+
+#footer p:nth-child(even) {
+    animation: fadeInLeft 1s both;
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .social-icon {
-  margin: 10px;
-  color: #fff;
-  text-decoration: none;
-  transition: transform 0.2s ease-in;
+    margin: 10px;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.2s ease-in;
 }
 
 .social-icon:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .contact-info {
-  margin-top: 20px;
+    margin-top: 20px;
 }
