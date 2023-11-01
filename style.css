@@ -144,6 +144,8 @@ a:hover {
         display: flex;
         flex-direction: row; /* Alinhar os itens horizontalmente em linha */
         justify-content: center; /* Centralizar horizontalmente */
+        max-width: 225px;
+        padding: 15px;
     }
 
     #codigo, #material {
