@@ -135,17 +135,19 @@ a:hover {
     padding: 5px;
     color: rgb(3, 3, 3);
     margin: 0;
-}
 @media screen and (max-width: 768px) {
     #qrcode-container {
+        display: flex;
         flex-direction: row; /* Alinhar os itens horizontalmente em linha */
+        justify-content: center; /* Centralizar horizontalmente */
     }
 
     #codigo, #material {
         font-size: 14px; /* Reduzir o tamanho da fonte para ambos */
+        text-align: center; /* Centralizar o texto */
     }
 }
-
+    
 #codigo {
     color: rgb(0, 0, 0);
     padding: 3px;
