@@ -31,7 +31,7 @@ function createCustomImageAndDownload() {
         // Crie um link temporário para fazer o download
         var downloadLink = document.createElement("a");
         downloadLink.href = customImage.src;
-        downloadLink.download = "custom_image.png";
+        downloadLink.download = materialValue + ".png";
 
         // Simule o clique no link para iniciar o download
         downloadLink.click();
